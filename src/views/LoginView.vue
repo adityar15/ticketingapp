@@ -7,7 +7,7 @@
         :error="errorBag.email"
         v-model="form.email"
       />
-      <!-- <div>
+       <!-- <div>
         <label>Email</label>
         <input type="email" placeholder="Enter email" v-model="form.email"  />
         <span>Email required</span>
@@ -34,8 +34,8 @@
 import CenterCard from "../components/organisms/CenterCard.vue"
 import { FormGroup, Form, Button } from "@adiranids/vue3-tailwind"
 import { reactive } from "vue"
-import axios from "axios"
 import { useRouter } from "vue-router"
+import { api } from "../assets/api"
 
 const errorBag = reactive({
   email: "",
@@ -46,6 +46,7 @@ const form = reactive({
   email: "",
   password: "",
 })
+
 
 const router = useRouter()
 
@@ -61,7 +62,7 @@ function login() {
     errorBag.password = ""
   }
 
-  axios.post("http://127.0.0.1:8000/login", form).then((response) => {
+  api().post("/login", form).then((response) => {
     if (response.status == 200 && response.data.token) {
       window.localStorage.setItem("user", response.data.id)
       console.log("response", response.data)
@@ -77,6 +78,7 @@ function login() {
     {
       alert(err.response.data.detail)
     }
+
   })
 }
 </script>
