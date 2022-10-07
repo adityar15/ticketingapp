@@ -7,6 +7,8 @@ export const useKanbanSortStore = defineStore("kanbansort", {
       addedTo: null,
       removedFrom: null,
       card: null,
+      newIndex: null,
+      oldIndex: null
     };
   },
 

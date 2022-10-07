@@ -1,152 +1,29 @@
 <template>
-  <div class="flex overflow-auto w-full card-list-container space-x-4 flex-grow p-4">
-        <KanbanBoard v-for="(item, index) in cards" :key="index" :category="item"  />
+  <div class="flex overflow-auto w-full card-list-container space-x-4 p-4 h-[80vh]">
+        <Sidebar />
+        <KanbanBoard v-for="(item, index) in categories" :key="index" :category="item"  />
   </div>
 </template>
 
 <script setup>
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, watch } from "vue";
+import {useProjectStore} from "../../stores/project"
+import {storeToRefs} from 'pinia'
+
 
 const KanbanBoard = defineAsyncComponent(() =>
   import(/*webpackChunkName: "kanbanboard"*/ "../organisms/KanbanBoard.vue")
 );
 
-const cards = [
-  {
-    id: 1,
-    title: "Backlog",
-    color: "bg-blue-600",
-    listitems: [
-      {
-        id: 1,
-        text: "Get the task ready",
-      },
-      {
-        id: 2,
-        text: "Get the task 2 ready",
-      },
-      {
-        id: 3,
-        text: "Get the task 3 ready and make sure everything is at its place so that things doesn't go wrong",
-      },
-      {
-        id: 4,
-        text: "Get the task 3 ready and make sure everything is at its place so that things doesn't go wrong",
-      },
-      {
-        id: 5,
-        text: "Get the task 3 ready and make sure everything is at its place so that things doesn't go wrong",
-      },
-      {
-        id: 6,
-        text: "Get the task 3 ready and make sure everything is at its place so that things doesn't go wrong",
-      },
-      {
-        id: 7,
-        text: "Get the task 3 ready and make sure everything is at its place so that things doesn't go wrong",
-      },
-      {
-        id: 8,
-        text: "Get the task 3 ready and make sure everything is at its place so that things doesn't go wrong",
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "To-Do",
-    color: "bg-orange-600",
-    listitems: [
-      {
-        id: 1,
-        text: "Get the task ready",
-      },
-      {
-        id: 2,
-        text: "Get the task 2 ready",
-      },
-      {
-        id: 3,
-        text: "Get the task 3 ready and make sure everything is at its place so that things doesn't go wrong",
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: "Doing",
-    color: "bg-orange-600",
-    listitems: [
-      {
-        id: 1,
-        text: "Get the task ready",
-      },
-      {
-        id: 2,
-        text: "Get the task 2 ready",
-      },
-      {
-        id: 3,
-        text: "Get the task 3 ready and make sure everything is at its place so that things doesn't go wrong",
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: "Code Review",
-    color: "bg-orange-600",
-    listitems: [
-      {
-        id: 1,
-        text: "Get the task ready",
-      },
-      {
-        id: 2,
-        text: "Get the task 2 ready",
-      },
-      {
-        id: 3,
-        text: "Get the task 3 ready and make sure everything is at its place so that things doesn't go wrong",
-      },
-    ],
-  },
-  {
-    id: 5,
-    title: "Testing",
-    color: "bg-orange-600",
-    listitems: [
-      {
-        id: 1,
-        text: "Get the task ready",
-      },
-      {
-        id: 2,
-        text: "Get the task 2 ready",
-      },
-      {
-        id: 3,
-        text: "Get the task 3 ready and make sure everything is at its place so that things doesn't go wrong",
-      },
-    ],
-  },
-  {
-    id: 6,
-    title: "Done",
-    color: "bg-green-500",
-    listitems: [
-      {
-        id: 1,
-        text: "Get the task ready",
-      },
-      {
-        id: 2,
-        text: "Get the task 2 ready",
-      },
-      {
-        id: 3,
-        text: "Get the task 3 ready and make sure everything is at its place so that things doesn't go wrong",
-      },
-    ],
-  },
-];
+const Sidebar = defineAsyncComponent(() =>
+  import(/*webpackChunkName: "sidebar"*/ "../dashboard/Sidebar.vue")
+);
+
+
+const store = useProjectStore()
+const {categories} = storeToRefs(store)
+
+
 </script>
 
 <style scoped>
