@@ -20,17 +20,17 @@ const NavBarAuth = defineAsyncComponent(()=>import(/*webpackChunkName:"navbaraut
 
 // refresh the access token after every 10s
 
-const router = useRouter()
-onMounted(()=>{
-    setInterval(() => {
-        api().get(`/refresh_access_token/${getCookie('access_token') || window.localStorage.getItem("user")}`).then(res =>{
-            if(res.status == 200)
-            console.log("token all good")
-        }).catch(err =>{
-            console.log(err.response)
-            router.replace("/")
-        })
-    }, 15000);
-})
+// const router = useRouter()
+// onMounted(()=>{
+//     setInterval(() => {
+//         api().get(`/refresh_access_token/${getCookie('access_token') || window.localStorage.getItem("user")}`).then(res =>{
+//             if(res.status == 200)
+//             console.log("token all good")
+//         }).catch(err =>{
+//             console.log(err.response)
+//             router.replace("/")
+//         })
+//     }, 15000);
+// })
 </script>
 
