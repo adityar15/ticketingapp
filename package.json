@@ -8,13 +8,15 @@
     "test:unit": "vitest --environment jsdom",
     "test:e2e": "start-server-and-test preview http://localhost:4173/ 'cypress open --e2e'",
     "test:e2e:ci": "start-server-and-test preview http://localhost:4173/ 'cypress run --e2e'",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "deploy": "npm run build && firebase deploy"
   },
   "dependencies": {
     "@adiranids/vue3-tailwind": "^1.1.1",
     "@headlessui/vue": "^1.7.2",
     "@heroicons/vue": "^2.0.11",
     "axios": "^0.27.2",
+    "firebase": "^9.11.0",
     "pinia": "^2.0.21",
     "vue": "^3.2.38",
     "vue-draggable-next": "^2.1.1",
